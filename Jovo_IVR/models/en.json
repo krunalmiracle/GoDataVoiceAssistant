@@ -1,18 +1,18 @@
 {
-  "invocation": "my test app",
+  "invocation": "virtual doctor",
   "version": "4.0",
   "intents": {
     "YesIntent": {
       "phrases": [
         "yes",
-        "yes please",
+        "yes good",
         "sure"
       ]
     },
     "NoIntent": {
       "phrases": [
         "no",
-        "no thanks"
+        "not okay"
       ]
     }
   }

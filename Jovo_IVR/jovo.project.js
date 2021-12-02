@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+const { GoogleAssistantCli } = require('@jovotech/platform-googleassistant');
 const { ProjectConfig } = require('@jovotech/cli-core');
 
 /*
@@ -13,6 +15,7 @@ const project = new ProjectConfig({
   endpoint: '${JOVO_WEBHOOK_URL}',
   plugins: [
     // Add Jovo CLI plugins here
+    new GoogleAssistantCli({ projectId: 'ivr-godata-80046' }),
   ],
 });
 

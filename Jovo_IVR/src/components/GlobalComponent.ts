@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Component, BaseComponent, Global } from '@jovotech/framework';
-import { LoveHatePizzaComponent } from './LoveHatePizzaComponent';
-
+//import { LoveHatePizzaComponent } from './LoveHatePizzaComponent';
+import { GoDataComponent } from './GoDataComponent';
 /*
 |--------------------------------------------------------------------------
 | Global Component
@@ -14,6 +15,6 @@ import { LoveHatePizzaComponent } from './LoveHatePizzaComponent';
 @Component()
 export class GlobalComponent extends BaseComponent {
   LAUNCH() {
-    return this.$redirect(LoveHatePizzaComponent);
+    return this.$redirect(GoDataComponent);
   }
 }

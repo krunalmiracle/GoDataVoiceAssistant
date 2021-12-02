@@ -1,7 +1,9 @@
+import { GoogleAssistantPlatform } from '@jovotech/platform-googleassistant';
+import { CorePlatform } from '@jovotech/platform-core';
 import { App } from '@jovotech/framework';
 
 import { GlobalComponent } from './components/GlobalComponent';
-import { LoveHatePizzaComponent } from './components/LoveHatePizzaComponent';
+import { GoDataComponent } from './components/GoDataComponent';
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +24,7 @@ const app = new App({
   | Learn more here: www.jovo.tech/docs/components
   |
   */
-  components: [GlobalComponent, LoveHatePizzaComponent],
+  components: [GlobalComponent, GoDataComponent],
 
   /*
   |--------------------------------------------------------------------------
@@ -35,6 +37,8 @@ const app = new App({
   */
   plugins: [
     // Add Jovo plugins here
+    new GoogleAssistantPlatform(),
+    new CorePlatform(),
   ],
 
   /*

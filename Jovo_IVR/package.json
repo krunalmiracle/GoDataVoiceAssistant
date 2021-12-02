@@ -20,7 +20,9 @@
     "@jovotech/framework": "^4.0.0",
     "@jovotech/plugin-debugger": "^4.0.0",
     "@jovotech/server-express": "^4.0.0",
-    "source-map-support": "^0.5.19"
+    "source-map-support": "^0.5.19",
+    "@jovotech/platform-core": "^4.0.0",
+    "@jovotech/platform-googleassistant": "^4.0.0"
   },
   "devDependencies": {
     "@jovotech/cli-core": "^4.0.0",
