@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { Component, BaseComponent, Intents } from '@jovotech/framework';
+import { Component, BaseComponent, Intents, Logger } from '@jovotech/framework';
 
 import { YesNoOutput } from '../output/YesNoOutput';
 
@@ -15,13 +15,40 @@ import { YesNoOutput } from '../output/YesNoOutput';
 @Component()
 export class GoDataComponent extends BaseComponent {
   START() {
-    return this.$send(YesNoOutput, {
+    return this.$send({
       message: 'Hello, What is your name?',
       reprompt: 'Could you tell me your name?',
       listen: true,
     });
   }
-  /* @Intents(['MyNameIsHealtyIntent'])
+
+  @Intents(['AskNameIntent'])
+  statusQuestion() {
+    Logger.warn(this.$input.text);
+    return this.$send(YesNoOutput, {
+      message: `Hi ${this.$input.text}, how do you feel today?`,
+      listen: true,
+    });
+  }
+
+  @Intents(['YesIntent'])
+  statusGood() {
+    return this.$send({
+      message: 'Thats good to hear, no further question required',
+      listen: false,
+    });
+  }
+
+  @Intents(['NoIntent'])
+  statusNotGood() {
+    return this.$send({ message: `That's too bad, please contact epidemiologist`, listen: false });
+  }
+
+  UNHANDLED() {
+    return this.START();
+  }
+}
+/* @Intents(['MyNameIsHealtyIntent'])
   getName() {
     return this.$send(YesNoOutput, {
       message: 'Do You feel Good?',
@@ -29,7 +56,7 @@ export class GoDataComponent extends BaseComponent {
       listen: true,
     });
   } */
-  /* "MyNameIsIntent" : {
+/* "MyNameIsIntent" : {
     "phrases": [
       "{name}",
       "my name is {name}",
@@ -50,20 +77,3 @@ export class GoDataComponent extends BaseComponent {
       }
     ]
   }, */
-  @Intents(['YesIntent'])
-  statusGood() {
-    return this.$send({
-      message: 'Thats good to hear, no further question required',
-      listen: false,
-    });
-  }
-
-  @Intents(['NoIntent'])
-  statusNotGood() {
-    return this.$send({ message: `That's too bad, please contact epidemiologist`, listen: false });
-  }
-
-  UNHANDLED() {
-    return this.START();
-  }
-}

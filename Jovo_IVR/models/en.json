@@ -1,7 +1,18 @@
 {
-  "invocation": "virtual doctor",
+  "invocation": "virtual krus",
   "version": "4.0",
   "intents": {
+    "AskNameIntent": {
+      "phrases": [],
+      "inputs": [
+        {
+          "name": "number",
+          "type": {
+            "googleAssistant": "strname"
+          }
+        }
+      ]
+    },
     "YesIntent": {
       "phrases": [
         "yes",

@@ -50,7 +50,12 @@ const app = new App({
   | Learn more here: www.jovo.tech/docs/app-config
   |
   */
-  logging: true,
+  logging: {
+    enabled: true,
+    request: true,
+    response: true,
+    // ...
+  },
 
   routing: {
     intentMap: {
