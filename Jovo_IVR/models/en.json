@@ -4,15 +4,22 @@
   "intents": {
     "AskNameIntent": {
       "phrases": [
-        "{name}",
         "my name is {name}",
         "i am {name}",
-        "you can call me {name}"
+        "you can call me {name}",
+        "{name}"
       ],
       "entities": {
+        "extraType": {
+          "type": {
+            "googleAssistant": "extraInputType",
+            "alexa": "AMAZON.US_FIRST_NAME",
+            "dialogflow": "@sys.given-name"
+          }
+        },
         "name": {
           "type": {
-            "googleAssistant": "NameInputType",
+            "googleAssistant": "strname",
             "alexa": "AMAZON.US_FIRST_NAME",
             "dialogflow": "@sys.given-name"
           }
@@ -34,7 +41,7 @@
     }
   },
   "entityTypes": {
-    "NameInputType":{
+    "extraInputType":{
       "values": [
         {
           "value": "max"
@@ -46,6 +53,23 @@
           "value": "joe"
         }
       ]
+    }
+  },
+  "googleAssistant": {
+    "custom": {
+      "intents": {
+        "ActionsIntent": {
+          "trainingPhrases": [
+            "foo",
+            "bar"
+          ]
+        }
+      },
+      "types": {
+        "strname": {
+          "freeText":{}
+        }
+      }
     }
   }
 }

@@ -24,56 +24,76 @@ export class GoDataComponent extends BaseComponent {
 
   @Intents(['AskNameIntent'])
   statusQuestion() {
-    Logger.warn(this.$input.text);
-    return this.$send(YesNoOutput, {
-      message: `Hi ${this.$input.text}, how do you feel today?`,
-      listen: true,
-    });
+    /* Logger.error('-----------------------------START--------------------------------------');
+    Logger.error('this.$googleAssistant?.$request');
+    Logger.error(this.$googleAssistant?.$request);
+    Logger.error('------------------------------------------------------------------------');
+    Logger.error('this.$googleAssistant?.$response');
+    Logger.error(this.$googleAssistant?.$response);
+    Logger.error('------------------------------------------------------------------------');
+    Logger.error('this.$output');
+    Logger.error(this.$output);
+    Logger.error('------------------------------------------------------------------------');
+    Logger.error('this.$response');
+    Logger.error(this.$response);
+    Logger.error('------------------------------------------------------------------------');
+    Logger.error('this.$request');
+    Logger.error(this.$request);
+    Logger.error('------------------------------------------------------------------------');
+    Logger.error('this.$request.getInput().entities');
+    Logger.error(this.$request.getInput().entities);
+    Logger.error('------------------------------------------------------------------------');
+    Logger.error('this.$data');
+    Logger.error(this.$data);
+    Logger.error('------------------------------------------------------------------------');
+    Logger.error('this.$input.entities');
+    Logger.error(this.$input.entities);
+    Logger.error('--------------------------------END-------------------------------------'); */
+    if (this.$input?.entities?.name?.value) {
+      if (
+        this.$input?.entities?.name?.value.includes('my name is') ||
+        this.$input?.entities?.name?.value.includes('name is') ||
+        this.$input?.entities?.name?.value.includes('its') ||
+        this.$input?.entities?.name?.value.includes('it is') ||
+        this.$input?.entities?.name?.value.includes('my name') ||
+        this.$input?.entities?.name?.value.includes('i am') ||
+        this.$input?.entities?.name?.value.includes('I am') ||
+        this.$input?.entities?.name?.value.includes('you can call me')
+      ) {
+        return this.$send({
+          message: 'Could you tell me your name?',
+          reprompt: 'Could you tell me your name?',
+          listen: true,
+        });
+      } else {
+        return this.$send(YesNoOutput, {
+          message: `Hi ${this.$input?.entities?.name?.value}, do you feel good today?`,
+          listen: true,
+        });
+      }
+    } else {
+      return this.$send({
+        message: 'Could you tell me your name?',
+        reprompt: 'Could you tell me your name?',
+        listen: true,
+      });
+    }
   }
 
   @Intents(['YesIntent'])
   statusGood() {
     return this.$send({
-      message: 'Thats good to hear, no further question required',
+      message: 'Thats good to hear, no further questions required',
       listen: false,
     });
   }
 
   @Intents(['NoIntent'])
   statusNotGood() {
-    return this.$send({ message: `That's too bad, please contact epidemiologist`, listen: false });
+    return this.$send({ message: `Please contact epidemiologist`, listen: false });
   }
 
   UNHANDLED() {
     return this.START();
   }
 }
-/* @Intents(['MyNameIsHealtyIntent'])
-  getName() {
-    return this.$send(YesNoOutput, {
-      message: 'Do You feel Good?',
-      reprompt: 'Could you tell me how you feel?',
-      listen: true,
-    });
-  } */
-/* "MyNameIsIntent" : {
-    "phrases": [
-      "{name}",
-      "my name is {name}",
-      "i am {name}",
-      "you can call me {name}"
-    ],
-    "entities": {
-      "name": {
-        "value": "Max"
-      }
-    },
-    "inputs": [
-      {
-        "type": {
-          "alexa": "AMAZON.US_FIRST_NAME",
-          "dialogflow": "@sys.given-name"
-        }
-      }
-    ]
-  }, */
