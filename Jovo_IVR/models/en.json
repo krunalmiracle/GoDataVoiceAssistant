@@ -3,15 +3,21 @@
   "version": "4.0",
   "intents": {
     "AskNameIntent": {
-      "phrases": [],
-      "inputs": [
-        {
-          "name": "number",
+      "phrases": [
+        "{name}",
+        "my name is {name}",
+        "i am {name}",
+        "you can call me {name}"
+      ],
+      "entities": {
+        "name": {
           "type": {
-            "googleAssistant": "strname"
+            "googleAssistant": "NameInputType",
+            "alexa": "AMAZON.US_FIRST_NAME",
+            "dialogflow": "@sys.given-name"
           }
         }
-      ]
+      }
     },
     "YesIntent": {
       "phrases": [
@@ -24,6 +30,21 @@
       "phrases": [
         "no",
         "not okay"
+      ]
+    }
+  },
+  "entityTypes": {
+    "NameInputType":{
+      "values": [
+        {
+          "value": "max"
+        },
+        {
+          "value": "jane"
+        },
+        {
+          "value": "joe"
+        }
       ]
     }
   }
